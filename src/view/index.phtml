@@ -32,8 +32,8 @@
         <?php if ($this->user): ?>
             <p class="bg-success">Hello <?= $this->user->getDisplayName() ?>!</p>
             <?php if ($lastVisitPage): ?>
-                <p class="bg-success"><b>Least recently visited page:</b> <?= $lastVisitPage ?></p>
-                <p class="bg-success"><b>Most recently visited page:</b> <?= $firstVisitPage ?></p>
+                <p class="bg-success"><b>Least recently visited page:</b> <?= $firstVisitPage ?></p>
+                <p class="bg-success"><b>Most recently visited page:</b> <?= $lastVisitPage ?></p>
             <?php endif;?>
             <p class="bg-success"><b>Your total number of page:</b> <?= $countOfPage ?></p>
 
