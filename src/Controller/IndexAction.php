@@ -7,7 +7,7 @@ use Snowdog\DevTest\Model\UserManager;
 use Snowdog\DevTest\Model\WebsiteManager;
 use Snowdog\DevTest\Model\PageManager;
 
-class IndexAction
+class IndexAction extends AbstractControllerClass
 {
     /**
      * @var WebsiteManager
@@ -24,6 +24,7 @@ class IndexAction
 
     public function __construct(UserManager $userManager, WebsiteManager $websiteManager, PageManager $pageManager)
     {
+        $this->checkLogin();
         $this->websiteManager = $websiteManager;
         $this->pageManager = $pageManager;
         if (isset($_SESSION['login'])) {

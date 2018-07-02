@@ -7,7 +7,7 @@ use Snowdog\DevTest\Model\Varnish;
 use Snowdog\DevTest\Model\VarnishManager;
 use Snowdog\DevTest\Model\WebsiteManager;
 
-abstract class AbstractVarnishClass
+abstract class AbstractVarnishClass extends AbstractControllerClass
 {
     /**
      * @var UserManager

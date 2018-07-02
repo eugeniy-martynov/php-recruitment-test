@@ -4,7 +4,7 @@ namespace Snowdog\DevTest\Controller;
 
 use Snowdog\DevTest\Model\UserManager;
 
-class RegisterAction
+class RegisterAction extends AbstractControllerClass
 {
 
     /**
@@ -14,6 +14,7 @@ class RegisterAction
 
     public function __construct(UserManager $userManager)
     {
+        $this->checkLogin(false);
         $this->userManager = $userManager;
     }
 

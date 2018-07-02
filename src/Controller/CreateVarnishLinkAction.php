@@ -6,6 +6,7 @@ class CreateVarnishLinkAction extends AbstractVarnishClass
 {
     public function execute()
     {
+        $this->checkLogin();
         $this->websiteManager->link($_POST['assoc']);
         include __DIR__ . '/../view/varnish_list.phtml';
     }

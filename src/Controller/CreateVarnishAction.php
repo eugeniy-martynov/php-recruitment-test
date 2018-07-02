@@ -5,7 +5,7 @@ namespace Snowdog\DevTest\Controller;
 use Snowdog\DevTest\Model\UserManager;
 use Snowdog\DevTest\Model\VarnishManager;
 
-class CreateVarnishAction
+class CreateVarnishAction extends AbstractControllerClass
 {
     /**
      * @var VarnishManager
@@ -18,6 +18,7 @@ class CreateVarnishAction
 
     public function __construct(UserManager $userManager, VarnishManager $varnishManager)
     {
+        $this->checkLogin();
         $this->userManager = $userManager;
         $this->varnishManager = $varnishManager;
     }

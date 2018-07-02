@@ -7,7 +7,7 @@ use Snowdog\DevTest\Model\UserManager;
 use Snowdog\DevTest\Model\Website;
 use Snowdog\DevTest\Model\WebsiteManager;
 
-class WebsiteAction
+class WebsiteAction extends AbstractControllerClass
 {
 
     /**
@@ -29,6 +29,7 @@ class WebsiteAction
 
     public function __construct(UserManager $userManager, WebsiteManager $websiteManager, PageManager $pageManager)
     {
+        $this->checkLogin();
         $this->websiteManager = $websiteManager;
         $this->pageManager = $pageManager;
         $this->userManager = $userManager;

@@ -19,4 +19,10 @@ class WebsitesMenu extends AbstractMenu
     {
         return 'Websites';
     }
+
+    public function __invoke()
+    {
+        if (isset($_SESSION['login']))
+            parent::__invoke();
+    }
 }
