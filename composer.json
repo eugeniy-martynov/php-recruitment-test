@@ -9,6 +9,7 @@
     "psr-4": {
       "Snowdog\\DevTest\\": "src"
     },
+    "classmap": ["lib/"],
     "files": [
       "src/components.php"
     ]
