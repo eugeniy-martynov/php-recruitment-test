@@ -9,6 +9,7 @@ class Website
     public $name;
     public $hostname;
     public $user_id;
+    public $varnish_id;
 
     public function __construct()
     {
@@ -46,5 +47,13 @@ class Website
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVarnishId()
+    {
+        return $this->varnish_id;
     }
 }

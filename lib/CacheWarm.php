@@ -60,11 +60,9 @@ class Old_Legacy_CacheWarmer_Warmer
         $this->resolver = $resolver;
     }
 
-    public function warm($url) {
-        $ip = $this->resolver->getIp($this->hostname);
+    public function warm($url, $varnish) {
+        $ip = $varnish ? $varnish->getIp() : $this->resolver->getIp($this->hostname);
         sleep(1); // this emulates visit to http://$hostname/$url via $ip
         $this->actor->act($this->hostname, $ip, $url);
     }
-    
 }
-
