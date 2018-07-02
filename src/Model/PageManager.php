@@ -52,4 +52,46 @@ class PageManager
         $statement->execute();
         return $this->database->lastInsertId();
     }
+
+    public function getLeastRecentlyPageByWebsite($websiteIds)
+    {
+        /** @var \PDOStatement $query */
+        $query = $this
+            ->database
+            ->prepare('SELECT * 
+                FROM pages 
+                WHERE website_id IN (' . $websiteIds . ') AND 
+                last_visit = (SELECT MAX(last_visit) 
+                  FROM pages
+                  WHERE website_id IN (' . $websiteIds . '))');
+        $query->execute();
+        return $query->fetchObject(Page::class);
+    }
+
+    public function getMostRecentlyPageByWebsite($websiteIds)
+    {
+        /** @var \PDOStatement $query */
+        $query = $this
+            ->database
+            ->prepare('SELECT * 
+                FROM pages 
+                WHERE website_id IN (' . $websiteIds . ') AND 
+                last_visit = (SELECT MIN(last_visit) 
+                  FROM pages
+                  WHERE website_id IN (' . $websiteIds . '))');
+        $query->execute();
+        return $query->fetchObject(Page::class);
+    }
+
+    public function getCountOfPage($websiteIds)
+    {
+        /** @var \PDOStatement $query */
+        $query = $this
+            ->database
+            ->prepare('SELECT COUNT(page_id) as count
+                FROM pages 
+                WHERE website_id IN (' . $websiteIds . ')');
+        $query->execute();
+        return $query->fetchObject();
+    }
 }
