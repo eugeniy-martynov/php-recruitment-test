@@ -6,7 +6,6 @@ use Snowdog\DevTest\Core\Database;
 
 class PageManager
 {
-
     /**
      * @var Database|\PDO
      */
@@ -34,6 +33,22 @@ class PageManager
         $statement = $this->database->prepare('INSERT INTO pages (url, website_id) VALUES (:url, :website)');
         $statement->bindParam(':url', $url, \PDO::PARAM_STR);
         $statement->bindParam(':website', $websiteId, \PDO::PARAM_INT);
+        $statement->execute();
+        return $this->database->lastInsertId();
+    }
+
+    public function trackLastUpdatePageById($id)
+    {
+        $now = new \DateTime();
+        $now = date_format($now, 'Y-m-d H:i:s');
+        /** @var \PDOStatement $statement */
+        $statement = $this
+            ->database
+            ->prepare('UPDATE pages 
+              SET last_visit = :last 
+              WHERE page_id = :id;');
+        $statement->bindParam(':last', $now, \PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
         return $this->database->lastInsertId();
     }
